@@ -42,7 +42,7 @@ class CourseRepositoryTest {
         courseRepositor.save(RECORD5);
 
         Course RECORD_3 = new Course("CourseTest3","CourseTest1","CourseTest1","1","English",(float)44444,(float)0.1,false,1,0,"null",null);
-        courseRepositor.save(RECOgitRD_3);
+        courseRepositor.save(RECORD_3);
 
 
         Course course = courseRepositor.findById(1).orElseThrow();
