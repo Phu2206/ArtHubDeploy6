@@ -78,8 +78,8 @@ public class ServiceOfCourse implements InterfaceOfCourseService {
     }
 
 
-
-
+    public ServiceOfCourse() {
+    }
 
     @Override
     public String getNameByID(int id)
