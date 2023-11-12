@@ -7,19 +7,21 @@ import com.example.ArtHub.Entity.Account;
 import com.example.ArtHub.Entity.Course;
 import com.example.ArtHub.Repository.*;
 import com.example.ArtHub.utils.ModelMapperObject;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class ServiceOfCourse implements InterfaceOfCourseService {
 
     @Autowired
     CourseRateRepository courseRateRepository;
 
     @Autowired
-    CourseRepository courseRepository;
+    private CourseRepository courseRepository;
 
     @Autowired
     LearnerRepository learnerRepository;
@@ -56,6 +58,10 @@ public class ServiceOfCourse implements InterfaceOfCourseService {
     @Autowired
     CategoryRepository categoryRepository;
 
+    public ServiceOfCourse(CourseRepository courseRepository) {
+        this.courseRepository = courseRepository;
+    }
+
     @Override
     public Course createCourse(CreateCourseDTO dto) {
         Course course = new Course();
@@ -78,7 +84,7 @@ public class ServiceOfCourse implements InterfaceOfCourseService {
     @Override
     public String getNameByID(int id)
     {
-       return courseRepository.findById(id).getName();
+        return courseRepository.findById(id).get().getName();
     }
 
     @Override
@@ -161,7 +167,7 @@ public class ServiceOfCourse implements InterfaceOfCourseService {
 
 
 
-@Override
+    @Override
     public  List<ResponeCourseDTO> fromCourseListToResponeCourseDTOList(List<Course> CourseList) { //This fucntion use to convert courseList into ResponeCourseDTO list
         List<ResponeCourseDTO> ResponeCourseDTOList = new ArrayList<>();
         for (Course course : CourseList) {
@@ -171,9 +177,31 @@ public class ServiceOfCourse implements InterfaceOfCourseService {
         return ResponeCourseDTOList;
     }
 
+//    @Override
+//    public List<ResponeCourseDTO> getCourseList(CourseRepository courseRepository) {
+//        if(courseRepository == null)
+//        {
+//            return this.courseRepository.findAll().stream().map(course -> fromCourseToResponeCourseDTO(course)).toList();
+//        }
+//        else
+//        {
+//            return courseRepository.findAll().stream().map(course -> fromCourseToResponeCourseDTO(course)).toList();
+//        }
+//    }
+
+
     @Override
     public List<ResponeCourseDTO> getCourseList() {
+
         return courseRepository.findAll().stream().map(course -> fromCourseToResponeCourseDTO(course)).toList();
+
+    }
+
+
+
+
+    public List<Course> getCourseList2() {
+        return courseRepository.findAll();
     }
 
 }

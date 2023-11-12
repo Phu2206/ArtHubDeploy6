@@ -204,22 +204,22 @@ public class ControllerOfCourse implements InterfaceOfCourseController {
     public ResponseEntity<ResponeObject> sendMailToReceiver(@RequestParam int courseId, String receiverEmail,String SenderMessages, String receiverName,String receiverPassword,String senderName, @RequestParam int action) throws AppServiceExeption, IOException {
         String messageBody = "";
         String subject = "";
-        String courseName = courseRepository.findById(courseId).getName();
-        Float coursePrice = courseRepository.findById(courseId).getPrice();
+        String courseName = courseRepository.findById(courseId).get().getName();
+        Float coursePrice = courseRepository.findById(courseId).get().getPrice();
         if(action == 1) // receiver dont have arthub account
         {
             messageBody = "Hello " + receiverName +", you are given a drawing course named " + courseName +" on the online teaching and learning platform ArtHub that worth " +coursePrice+"$\n\n" +
-                "The sender is " + senderName +" with the following message:\n\n" +
-                SenderMessages +"\n\n\n" +
-                "We notice that your email address does not currently have an account on ArtHub. We are very sorry about this.\n\n" +
-                "However, you can still access the gifted course by accessing the account we created for you.\n\n" +
-                "Account contents are as follows:\n\n" +
-                "Email: " + receiverEmail +"\n\n\n" +
-                "Password: " + receiverPassword +"\n\n\n" +
-                "After logging in, change your personal information including your password to increase security.\n\n" +
-                "You will then have full access to the " + courseName +" course sent to you by " + senderName +"\n\n"+
-                "Visit the ArtHub website at http://localhost:3000/ and start learning now!!!\n\n" +
-                "If you have any questions or concerns, please don't hesitate to contact us.\n\nBest regards,\n[ArtHub staff]\n[ArtHub]\nAvatar";
+                    "The sender is " + senderName +" with the following message:\n\n" +
+                    SenderMessages +"\n\n\n" +
+                    "We notice that your email address does not currently have an account on ArtHub. We are very sorry about this.\n\n" +
+                    "However, you can still access the gifted course by accessing the account we created for you.\n\n" +
+                    "Account contents are as follows:\n\n" +
+                    "Email: " + receiverEmail +"\n\n\n" +
+                    "Password: " + receiverPassword +"\n\n\n" +
+                    "After logging in, change your personal information including your password to increase security.\n\n" +
+                    "You will then have full access to the " + courseName +" course sent to you by " + senderName +"\n\n"+
+                    "Visit the ArtHub website at http://localhost:3000/ and start learning now!!!\n\n" +
+                    "If you have any questions or concerns, please don't hesitate to contact us.\n\nBest regards,\n[ArtHub staff]\n[ArtHub]\nAvatar";
             subject = "You are given a course on ArtHub worth " +coursePrice;
         }
         else if(action == 2) // receiver have arthub account
@@ -300,7 +300,7 @@ public class ControllerOfCourse implements InterfaceOfCourseController {
     }
 
     public ResponeCourseDTO showSectionAndVideo(@RequestParam int id) {
-        Course course = courseRepository.findById(id);
+        Course course = courseRepository.findById(id).orElseThrow();
         return courseService.fromCourseToResponeCourseDTO(course);
     }
 

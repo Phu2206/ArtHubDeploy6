@@ -6,13 +6,19 @@ import com.example.ArtHub.DTO.ResponeCourseDTO;
 import com.example.ArtHub.DTO.ResponeStudentInfor;
 import com.example.ArtHub.Entity.Account;
 import com.example.ArtHub.Entity.Course;
+import com.example.ArtHub.Repository.CourseRepository;
 
 import java.util.List;
 
 public interface InterfaceOfCourseService {
     Course createCourse(CreateCourseDTO dto) throws AppServiceExeption;
 
+//    List<ResponeCourseDTO> getCourseList(CourseRepository courseRepository);
+
+
     List<ResponeCourseDTO> getCourseList();
+
+
 
     public int updateMainImage(int id, String imageName);
 

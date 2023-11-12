@@ -57,6 +57,12 @@ public class AccountController {
 //
 //        }
 //    }
+
+    @GetMapping("/testConnection")
+    public ResponseEntity<ResponeObject> testConnection()
+    {
+        return new ResponseEntity<>(new ResponeObject("Ok","Connect to server successfully!",null),HttpStatus.OK);
+    }
     @GetMapping("/accounts")
     public ResponseEntity<List<Account>> getAllAccounts(@RequestParam(required = false) String name) {
         try {

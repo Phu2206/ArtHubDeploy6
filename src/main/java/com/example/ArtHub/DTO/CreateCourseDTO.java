@@ -65,6 +65,25 @@ public class CreateCourseDTO {
     private CreateLearningObjectiveDTO learningObjective;
 
 
+    public CreateCourseDTO(Integer id, String name, String description, String introduction, String level, String language, Float price, Float coupon, boolean isPassed, boolean isApproved, Integer accountId, String image, Date date, List<CreateCategoryCourseDTO> categories, List<CreateSectionDTO> sections, CreateLearningObjectiveDTO learningObjective) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.introduction = introduction;
+        this.level = level;
+        this.language = language;
+        this.price = price;
+        this.coupon = coupon;
+        this.isPassed = isPassed;
+        this.isApproved = isApproved;
+        this.accountId = accountId;
+        this.image = image;
+        this.date = date;
+        this.categories = categories;
+        this.sections = sections;
+        this.learningObjective = learningObjective;
+    }
+
     public Integer getId() {
         return id;
     }

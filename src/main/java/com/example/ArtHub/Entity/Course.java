@@ -16,10 +16,10 @@ public class Course {
     private Integer id;
     @Column(name="name")
     private String  name;
-    
+
     @Column(name = "description")
     private String description;
-    
+
     @Column(name = "introduction")
     private String introduction;
 
@@ -60,6 +60,23 @@ public class Course {
     @CreationTimestamp
     private Date date;
 
+    public Course() {
+    }
+
+    public Course( String name, String description, String introduction, String level, String language, Float price, Float coupon, Boolean isPassed, Integer accountId, Integer status, String image, Date date) {
+        this.name = name;
+        this.description = description;
+        this.introduction = introduction;
+        this.level = level;
+        this.language = language;
+        this.price = price;
+        this.coupon = coupon;
+        this.isPassed = isPassed;
+        this.accountId = accountId;
+        Status = status;
+        this.image = image;
+        this.date = date;
+    }
 
     public Date getDate() {
         return date;
